@@ -3,6 +3,7 @@
 - #59ab6e(포인트)
 - #212934 (보조색)
 - #efefef(슬라이더 배경색)
+- #E9EEF5(슬라이더 카테고리 배경색)
 2. font
 
 - Noto Sans KR (한글)
@@ -12,3 +13,7 @@
 
 - font-family: 'Noto Sans KR', sans-serif;
 - font-family: 'Roboto', sans-serif;
+
+
+
+

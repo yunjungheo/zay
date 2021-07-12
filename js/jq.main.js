@@ -25,7 +25,7 @@ $(function(){
           });
           $("header").addClass("stick");
         }else{
-          $("header").css({position:"static"});
+          $("header").css({position:"relative"});
           $("header").removeClass("stick");
         }
       });
@@ -33,7 +33,7 @@ $(function(){
 
   headerStick();
   //식별자인데 함수역할을 하고 밑에서 호출을 해준다 : 
-
+  const slider = function(){
   //Light Slider Function Code
   $(".slider").lightSlider({
      //1.슬라이드 할부분의 전체를 감싸고있는 slider를 선택해준것
@@ -43,8 +43,24 @@ $(function(){
     controls: true,
     prevHtml: '<i class="fa fa-angle-left"></i>',
     nextHtml: '<i class="fa fa-angle-right"></i>',
+
+    speed: 400,
+    auto: true,
+    loop: true,
+    pause: 4000,  
+    easing: 'linear'
   
-  }); 
- 
-    
+   }); 
+  }
+  slider();
+
+  $(".mobile_menu").click(function(){
+    $(this).toggleClass("on");
+    if($(this).hasClass("on")){
+      $(".menu_items").slideDown(250);
+    }else{
+      $(".menu_items").slideUp(250);
+
+    }
+  });
 });
