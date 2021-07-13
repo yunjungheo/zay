@@ -34,7 +34,7 @@ CREATE TABLE `zay_mem` (
   `ZAY_mem_email` varchar(30) CHARACTER SET utf8 NOT NULL COMMENT '회원 이메일',
   `ZAY_mem_pf` varchar(100) CHARACTER SET utf8 NOT NULL COMMENT '회원 프로필 사진',
   `ZAY_mem_pass` varchar(30) CHARACTER SET utf8 NOT NULL COMMENT '회원 비밀번호',
-  `ZAY_mem_regi_day` varchar(30) NOT NULL COMMENT '회원 가입일'
+  `ZAY_mem_regi_day` varchar(30) CHARACTER SET utf8 NOT NULL COMMENT '회원 가입일'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

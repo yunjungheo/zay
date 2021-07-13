@@ -4,7 +4,7 @@
 /** /!!! core css Should not edit !!!/**/ 
 
 .lSSlideOuter {
-    position: relative;
+    position:relative;
     overflow: hidden;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -12,7 +12,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none
-    
 }
 .lightSlider:before, .lightSlider:after {
     content: " ";
@@ -24,11 +23,10 @@
 }
 .lSSlideWrapper {
     max-width: 100%;
-    margin: auto;
     overflow: hidden;
     position: relative;
-    padding: 50px 0;
-    background: #efefef;
+    padding:50px 0;
+    background:#efefef;
 }
 .lSSlideWrapper > .lightSlider:after {
     clear: both;
@@ -78,33 +76,33 @@
 
 /* Pager */
 .lSSlideOuter .lSPager.lSpg {
-    bottom: 50px;
-    position: absolute;
-    width: 100%;
     margin: 10px 0 0;
     padding: 0;
     text-align: center;
+    width:100%;
+    position:absolute;
+    bottom:50px;
 }
 .lSSlideOuter .lSPager.lSpg > li {
     cursor: pointer;
     display: inline-block;
     _padding: 0 3px;
-    margin: 0 3px;
-    position: relative;
-    width: 40px;
-    height: 3px;
-    background: #fff;
+    margin:0 3px;
+    position:relative;
+    width:40px;
+    height:3px;
+    background:#fff;
 }
 .lSSlideOuter .lSPager.lSpg > li a {
-    background-color: #93dba5;
-    _border-radius: 30px;
+    background-color: #fff;
+    border-radius: 30px;
     display: inline-block;
-    height: 3px;    
+    height: 3px;
     overflow: hidden;
     text-indent: -999em;
     width: 40px;
     position: absolute;
-    left: 0;
+    left:0;
     z-index: 99;
     -webkit-transition: all 0.5s linear 0s;
     transition: all 0.5s linear 0s;
@@ -113,12 +111,13 @@
     background-color: #59ab6e;
 }
 
-.lSSlideOuter .lSPager.lSpg > li.active a{animation: fill-bar 4s 1;}
+.lSSlideOuter .lSPager.lSpg > li.active a{animation:fill-bar 4s 1;}
 
 @keyframes fill-bar{
-    0%{width: 0;}
-    100%{width: 100%;}
+    0%{width:0;}
+    100%{width:100%;}
 }
+
 .lSSlideOuter .media {
     opacity: 0.8;
 }
@@ -170,9 +169,7 @@
 /* End of Gallery*/
 
 /* slider actions */
-
-.lSAction{position: absolute; width: 100%; max-width: 1450px;display: flex;justify-content: space-between; left: 50%; top: 50%; transform: translate(-50%, -50%);}
-
+.lSAction{position:absolute; width:100%; max-width:1450px; display:flex; justify-content: space-between; left:50%; top:50%; transform:translate(-50%, -50%);}
 .lSAction > a {
     _width: 32px;
     _display: block;
@@ -187,7 +184,7 @@
     _-webkit-transition: opacity 0.35s linear 0s;
     _transition: opacity 0.35s linear 0s;
 }
-.lSAction > a > i {font-size: 40px; font-weight: bold; transition: all 0.4s;}
+.lSAction > a > i{font-size:40px; font-weight:bold; transition:all 0.4s;}
 .lSAction > a:hover {
     opacity: 1;
 }

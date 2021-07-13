@@ -1,19 +1,17 @@
 1. color
+
 - #ffffff(주색)
 - #59ab6e(포인트)
-- #212934 (보조색)
-- #efefef(슬라이더 배경색)
-- #E9EEF5(슬라이더 카테고리 배경색)
+- #212934(보조색)
+- #2d343f(footer line color)
+
 2. font
 
-- Noto Sans KR (한글)
-- Roboto (영어)
-- #212529(main fotn color)
-
+- Noto Sans KR(한글)
+- Roboto(영어)
+- #212529(main font color)
 
 - font-family: 'Noto Sans KR', sans-serif;
 - font-family: 'Roboto', sans-serif;
 
-
-
-
+linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
