@@ -16,7 +16,7 @@
     <p>가입일 : <input type ="text" name="mem_regi"></p>
     
     <button type="button" id="submit_btn">제출</button>
-    <!--   타입에 써밋을 쓰지말아야하는 이유??  -->
+
   </form>
 
   <script>
