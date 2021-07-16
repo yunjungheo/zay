@@ -34,7 +34,7 @@ $(function(){
  const cuttingText = function(){
   //console.log($(".featured_item").length);
   for(let i = 0; i<$(".featured_item").length; i++){
-    const textLength = $(".featured_item").eq(i).find("p").text();
+    const textLength = $(".featured_item").eq(i).find("p.desc").text();
     //console.log(textLength);
 
     $(".featured_item").eq(i).find("p.desc").text(textLength.substr(0,60) + "...");
@@ -49,8 +49,46 @@ $(function(){
 
   $(".load_more button").click(function(){
     $(".featured_item:hidden").slice(0, 3).show();
+   if($(".featured_item:hidden").length == 0) {
+    //  갯수가 0 이기때문에 length를 꼭써줘야함
+      $(".load_more").html(`<a href="#">전체보기</a>`);
+
+   }
   });
  }
  loadMore();
-  
+
+
+// featured product 에 나오는 이미지 가로 높이 사이즈 처리(반응형)
+const imgHeightFit = function(){
+ const featuredImgWidth = $(".featured_img").outerWidth();
+  $(".featured_img").outerHeight(featuredImgWidth);
+
+  // 높이를 가로 값으로 지정해주는
+  $(window).resize(function(){
+    const featuredImgWidth = $(".featured_img").outerWidth();
+    $(".featured_img").outerHeight(featuredImgWidth);
+
+  });
+}
+
+
+imgHeightFit();
+
+  const detailTabs = function(){
+      $(".detail_tab_btns span").click(function(){
+      const index = $(this).index();
+
+      $(".detail_img>img").hide();
+      $(".detail_img>img").eq(index).show();
+      });
+
+    $(".detail_tab_btns span").eq(0).trigger("click");
+    
+
+  }
+
+  detailTabs();
+
+
 });
