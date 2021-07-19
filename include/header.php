@@ -23,7 +23,7 @@
       <div class="contact_info">
         <a href="#">
           <i class="fa fa-envelope"></i>
-          <em>info@dabipyeung.com</em>
+          <em>info@gmail.com</em>
         </a>
         <a href="#">
           <i class="fa fa-phone"></i>

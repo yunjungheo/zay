@@ -125,7 +125,6 @@
           $sql1 = "SELECT * FROM zay_pro ORDER BY ZAY_pro_idx DESC";
           $pro_result = mysqli_query($dbConn, $sql1);
 
-
           while($pro_row = mysqli_fetch_array($pro_result)){
             $pro_row_idx = $pro_row['ZAY_pro_idx'];
             $pro_row_img = $pro_row['ZAY_pro_img_01'];
@@ -134,10 +133,6 @@
             $pro_row_pri = $pro_row['ZAY_pro_pri'];
 
          ?>
-
-
-
-
 
         <!-- Featured Loop Item -->
         <div class="featured_item">
@@ -158,8 +153,13 @@
               <h3><?=$pro_row_tit?></h3>
               <p class="desc"><?=$pro_row_desc?></p>
             </div>
+            <?php
+              $sql2 = "SELECT * FROM zay_review WHERE 	ZAY_pro_rev_con_idx=$pro_row_idx";
+              $rev_num_sql = mysqli_query($dbConn, $sql2);
+              $rev_total = mysqli_num_rows($rev_num_sql);
+            ?>
             <div class="reviews">
-              <em>Comments(12)</em>
+              <em>Comments(<?=$rev_total?>)</em>
             </div>
           </div>
         </div>

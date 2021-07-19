@@ -115,45 +115,72 @@
       <div class="center">
         <div class="comments_tit">
           <span>상품평</span> |
-          <span><em>15</em> Comments</span>
+          <?php 
+            include $_SERVER["DOCUMENT_ROOT"]."/connect/db_conn.php";
+            $sql_rev = "SELECT * FROM zay_review WHERE 	ZAY_pro_rev_con_idx=$pro_idx ORDER BY ZAY_pro_rev_idx DESC";
+
+            $rev_result = mysqli_query($dbConn, $sql_rev);
+            $rev_total = mysqli_num_rows($rev_result);
+
+            //echo $rev_total;
+          ?>
+          <span><em><?=$rev_total?></em> Comments</span>
         </div>
         <div class="comment_insert">
-          <form action="#" method="post" name="comment_form">
+          <form action="/zay/php/comment.insert.php?pro_idx=<?=$pro_idx?>&pro_writer=<?=$userid?>" method="post" name="comment_form">
             <textarea type="text" placeholder="상품평을 입력해 주세요." name="comment_txt"></textarea>
-            <button type="button">입력</button>
+            <?php if(!$userid){ ?>
+            <button type="button" onclick="plzLogin()">입력</button>
+            <?php } else{ ?>
+            <button type="button" onclick="insertTxt()">입력</button>
+            <?php } ?>
+
+
           </form>
         </div>
-        <div class="comment_contents">
+        <div class="comment_contents">            
+            <?php
+              
+              while($rev_row = mysqli_fetch_array($rev_result)){
+                $rev_idx = $rev_row['ZAY_pro_rev_idx'];
+                $rev_writer = $rev_row['ZAY_pro_rev_id'];
+                $rev_reg = $rev_row['ZAY_pro_rev_reg'];
+                $rev_txt = $rev_row['ZAY_pro_rev_txt'];
+                $rev_pro_idx = $rev_row['ZAY_pro_rev_con_idx'];
+            ?>
            <!-- Loop Comments -->
            <div class="loop_contents">
               <div class="comments_tit">
-                <span>ggomi5678</span> |
-                <span>2021-07-16 14:36:15</span>
+                <span><?=$rev_writer?></span> |
+                <span><?=$rev_reg?></span>
               </div>
-              <div class="comments_text">
-                <span class="txt">
-                  <em>배송이 너무 느리네요.</em>
-                </span>
-                <span class="comment_btns">
-                  <button type="button">수정</button>
-                  <button type="button">삭제</button>
-                </span>
-              </div>
+              <form action="/zay/php/comment_update.php?pro_idx=<?=$rev_idx?>&pro_writer=<?=$rev_writer?>" method="post">
+                <div class="comments_text">
+                  <em class="rev_txt"><?=$rev_txt?></em>
+                  <textarea class="rev_update_txt" name="rev_update_txt"><?=$rev_txt?></textarea>
+                
+                <?php if(!$userid) { ?>
+                  <input type="hidden">              
+                <?php } else {if($userid != $rev_writer){  ?>
+                  <input type="hidden">
+                <?php } else { ?>
+                  <span class="comment_btns">
+                    <button type="submit" class="rev_send">보내기</button>
+                    <button type="button" class="rev_update">수정</button>
+                    <button type="button" class="rev_delete" value="<?=$rev_idx?>">삭제</button>
+                    <input type="hidden" value="<?=$rev_writer?>">
+                  </span>
+               
+                <?php
+                    }
+                  }
+                ?>
+              
+               </div>
+             </form>
             </div>
            <!-- End of Loop Comments -->
-           <!-- Loop Comments -->
-           <div class="loop_contents">
-              <div class="comments_tit">
-                <span>mimi9510</span> |
-                <span>2021-07-16 14:36:15</span>
-              </div>
-              <div class="comments_text">
-                <span class="txt">
-                  <em>너무 영롱합니다.</em>
-                </span>
-              </div>
-            </div>
-           <!-- End of Loop Comments -->
+           <?php } ?>
         </div>
       </div>
     </section>
@@ -167,7 +194,56 @@
   </div>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="/zay/js/jq.main.js"></script>
-  
+  <script>
+     $(function(){
+      $(".rev_update").click(function(){
+        $(this).toggleClass("on");
+
+        if($(this).hasClass("on")){
+          $(this).text('수정취소');
+          $(this).prev('.rev_send').show();
+          $(this).parent(".comment_btns").siblings(".rev_txt").hide();
+          $(this).parent(".comment_btns").siblings(".rev_update_txt").show();
+
+        }else{
+          $(this).text('수정');
+          $(this).prev('.rev_send').hide();
+          $(this).parent(".comment_btns").siblings(".rev_txt").show();
+          $(this).parent(".comment_btns").siblings(".rev_update_txt").hide();
+
+        }
+      });
+
+      $(".rev_delete").click(function(){
+
+        const confirmCheck = confirm('정말로 삭제하시겠습니까?');
+        //console.log(confirmCheck);
+        if(!confirmCheck){
+          return false;
+        }else{
+          const del_val = $(this).val();
+          const pro_writer = $(this).next("input").val();
+          location.href=`/zay/php/comment_delete.php?del_key=${del_val}&pro_writer=${pro_writer}`;
+        }        
+      });
+     });
+  </script>
+  <script>
+   function plzLogin(){
+     alert('로그인 후 이용해 주세요.');
+     return false;
+   }
+
+   function insertTxt(){
+     if(!document.comment_form.comment_txt.value){
+       alert('상품평을 입력해 주세요.');
+       //location.href()으로 로그인창 뜨게 연결해도됨
+       return;
+     }
+
+     document.comment_form.submit();
+   }
+  </script>
 
  
 
