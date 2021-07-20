@@ -15,3 +15,19 @@
 - font-family: 'Roboto', sans-serif;
 
 linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+
+3. 좋아요 싫어요 기능
+  1. 좋아요 테이블 생성
+  2. 상태 조회 코드 작성 $status_query
+  3. 상품 고유번호 저장 $detail_idx
+  4. 아이디 고유번호 세션 생성 $useridx < login.php => header.php
+  5. 테이블에 데이터가 존재한다면 존재하는 타입을 $like_unlike_type에 저장
+  6. 좋아요, 싫어요 갯수 0, 1을 합산하여 쿼리 저장
+  7. 좋아요, 싫어요 태그인 span에 $like_unlike_type의 값에 따라 조건을 나눠 인라인 스타일 적용
+  8. 좋아요, 싫어요 클릭 시 jquery 이벤트 코드 작성
+  9. ajax 메서드를 통해 type과 상품 번호를 like_unlike.php 파일로 전달(post)
+  10. like_unlike.php 파일에서 세션으로 저장된 아이디 번호를 불러오고, jquery로부터 전달받은
+  상품 번호와 타입 저장
+  11. 저장된 데이터를 이용하여 테이블에 데이터 추가
+  12. 버튼을 한 번이라도 눌렀다면 데이터 업데이트, 처음 눌렀다면 데이터 입력
+  13. 좋아요, 싫어요 총 갯수를 파악하여 jquery로 전달

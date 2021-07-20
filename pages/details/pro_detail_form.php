@@ -41,6 +41,7 @@
             $detail_result = mysqli_query($dbConn, $sql);
             $detail_row = mysqli_fetch_array($detail_result);
 
+            $detail_idx = $detail_row['ZAY_pro_idx'];
             $detail_img_1 = $detail_row['ZAY_pro_img_01'];
             $detail_img_2 = $detail_row['ZAY_pro_img_02'];
             $detail_tit = $detail_row['ZAY_pro_name'];
@@ -48,7 +49,40 @@
             $detail_desc = $detail_row['ZAY_pro_desc'];
             $detail_color = $detail_row['ZAY_pro_color'];
             $detail_bran = $detail_row['ZAY_pro_bran'];
-           
+            $like_unlike_type = -1;
+
+
+            //좋아요 싫어요 기능 구현 시작
+            $status_query = "SELECT COUNT(*) AS cntStatus, ZAY_like_unlike_type FROM zay_like_unlike WHERE ZAY_like_unlike_userid ='{$useridx}' AND
+            ZAY_like_unlike_postid ='{$detail_idx}'";
+
+            $status_result = mysqli_query($dbConn, $status_query);
+            $status_row = mysqli_fetch_array($status_result);
+            $count_status = $status_row['cntStatus'];
+            //전체랑 타입을 읽어줌 / 테이블이름도 써주기 / 유저 아이디가
+            //$type = $status_row['ZAY_like_unlike_type'];
+            //echo $type;
+            if($count_status > 0){
+              $like_unlike_type = $status_row['ZAY_like_unlike_type'];
+            }
+            //echo $like_unlike_type;
+
+             $like_query = "SELECT COUNT(*) cntLikes FROM zay_like_unlike WHERE ZAY_like_unlike_type=1 AND ZAY_like_unlike_postid ='{$detail_idx}'";
+            $like_result = mysqli_query($dbConn, $like_query);
+            $like_row = mysqli_fetch_array($like_result);
+            $total_likes = $like_row['cntLikes'];
+            // 라이크에 1이 되어있는 숫자를 세어주는것 
+
+             $unlike_query = "SELECT COUNT(*) cntUnLikes FROM zay_like_unlike WHERE ZAY_like_unlike_type=0 AND ZAY_like_unlike_postid ='{$detail_idx}'";
+             $unlike_result = mysqli_query($dbConn, $unlike_query);
+             $unlike_row = mysqli_fetch_array($unlike_result);
+             $total_unlikes = $unlike_row['cntUnLikes'];
+            
+            //echo $total_unlikes;
+
+
+
+             
           ?>
 
 
@@ -68,8 +102,14 @@
                 <p><span><i class="fa fa-krw"></i><?=$detail_pri?></span></p>
                 <div class="detail_like">
                   <div class="like_unlike">
-                    <span>like | <b>20</b></span>
-                    <span>unlike | <b>11</b></span>
+                    <span id="like_<?=$detail_idx?>" class="like" style="<?php if($like_unlike_type == 1){ echo"background:#59ab6e; color:#fff;"; } ?>">like | 
+                      <b id="likes_<?=$detail_idx?>"><?=$total_likes?></b>
+                    </span>
+
+                    <span id="unlike_<?=$detail_idx?>" class="unlike" style="<?php if($like_unlike_type == 0){ echo"background:lightcoral; color:#fff;"; } ?>">unlike | 
+                      <b id="unlikes_<?=$detail_idx?>"><?=$total_unlikes?></b>
+                    </span>
+
                     <!-- <span class="comments">20<b>Comments</b></span> -->
                   </div>
                   <p class="gray">Brand : <?=$detail_bran?></p>
@@ -192,8 +232,9 @@
     <?php include $_SERVER["DOCUMENT_ROOT"]."/zay/include/footer.php"; ?>
 
   </div>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="/zay/js/jq.main.js"></script>
+  <script src="/zay/js/jq.like.unlike.js"></script>
   <script>
      $(function(){
       $(".rev_update").click(function(){
@@ -227,8 +268,8 @@
         }        
       });
      });
+ 
   </script>
-  <script>
    function plzLogin(){
      alert('로그인 후 이용해 주세요.');
      return false;
@@ -243,7 +284,7 @@
 
      document.comment_form.submit();
    }
-  </script>
+  </>
 
  
 
