@@ -88,7 +88,23 @@ imgHeightFit();
 
   }
 
-  detailTabs();
+  
+  //디테일 페이지 이미지 높이 맞춤
+  function detailFit(){
+    const imgHeight = $(".detail_img_item").outerHeight();
+    const btnHeight = $(".detail_tab_btns").outerHeight();
+    //이 두개를 더한 높이가 detail_img 요걸로 만들어주는 
+    $(".detail_img").height(imgHeight + btnHeight);
 
+  }
 
+  $(window).resize(function(){
+    setTimeout(function(){//리사이즈, 스크롤 이벤트시 쓰로틀링
+    detailFit();
+
+    }, 150);
+   
+  });
+
+  detailFit();
 });
