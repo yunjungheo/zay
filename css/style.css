@@ -231,9 +231,6 @@ section.join .submit_info span a{display: inline-block; padding: 10px 20px; back
 .community .write_btn a{background: #59ab6e; color: #fff; padding: 8px 25px; border-radius: 5px;}
 
 
-
-
-
-
-
-/* .pro_insert .detail_wrap .like_icons{display: flex; align-items: center;} */
+/*Shop Page Style Code */
+.shop .shop_btns{width: 100%; height: auto; display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #eee;}
+.shop .shop_btns button{background: #59ab6e; color: #fff; border-radius: 5px; padding: 10px 25px; display: inline-block;}

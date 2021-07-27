@@ -87,12 +87,9 @@
       <div class="center">
         <div class="comments_tit">
           <?php
-            $sql2 = "SELECT * FROM zay_reply WHERE ZAY_comm_reply_idx=$detail_idx";
+            $sql2 = "SELECT * FROM zay_reply WHERE ZAY_comm_reply_idx=$detail_idx ORDER BY ZAY_reply_idx DESC";
             $reply_result = mysqli_query($dbConn, $sql2);
             $reply_total = mysqli_num_rows($reply_result);
-
-
-
           ?>
           <span>답글</span> |
           <span><em><?=$reply_total?></em> Replies</span>
@@ -110,27 +107,45 @@
 
         </form>
       </div>
-      <div class="comment_contents">            
+      <div class="comment_contents">    
+          <?php 
+          while($reply_row = mysqli_fetch_array($reply_result)){
+            $reply_idx = $reply_row['ZAY_reply_idx'];
+            $reply_id = $reply_row['ZAY_reply_id'];
+            $reply_con = $reply_row['ZAY_reply_con'];
+            $reply_reg = $reply_row['ZAY_reply_reg'];
+          
+          
+          ?>      
+        <!--Loop Coments  -->
         <div class="loop_contents">
           <div class="comments_tit">
-            <span>ggomi</span> |
-            <span>2021-07-26</span>
+            <span><?=$reply_id?></span> |
+            <span><?=$reply_reg?></span>
           </div>
-          <form action="" method="post">
+          <form action="/zay/php/reply_update.php?reply_idx=<?=$reply_idx?>&reply_id=<?=$reply_id?>" method="post">
             <div class="comments_text">
-              <em class="rev_txt">첫 댓글입니다.</em>
-              <textarea class="rev_update_txt" name="rev_update_txt">첫 댓글입니다.</textarea>        
+              <em class="rev_txt"><?=$reply_con?></em>
+              <textarea class="rev_update_txt" name="reply_con"><?=$reply_con?></textarea>     
+              <?php  
+              if(!$userid){
+              ?>
+              <input type="hidden">
+              <?php }else{ if($userid != $reply_id){ ?>
+              <input type="hidden">
+              <?php }else{ ?>
               <span class="comment_btns">
                 <button type="submit" class="rev_send">보내기</button>
                 <button type="button" class="rev_update">수정</button>
-                <button type="button" class="rev_delete" value="">삭제</button>
-                <input type="hidden" value="">
+                <button type="button" class="rev_delete" value="<?=$reply_idx?>">삭제</button>
+                <input type="hidden" value="<?=$reply_id?>">
               </span>
+              <?php }} ?>
             </div>
           </form>
         </div>
         <!-- End of Loop Comments -->
-        
+        <?php } ?>
       </div>
     </div>
   </section>
@@ -168,6 +183,42 @@
    }
     
 
+  </script>
+  <script>
+    //답글 인풋박스 활성화시켜주는 태그
+    $(function(){
+      $(".rev_update").click(function(){
+        $(this).toggleClass("on");
+
+        if($(this).hasClass("on")){
+          $(this).text('수정취소');
+          $(this).prev('.rev_send').show();
+          $(this).parent(".comment_btns").siblings(".rev_txt").hide();
+          $(this).parent(".comment_btns").siblings(".rev_update_txt").show();
+
+        }else{
+          $(this).text('수정');
+          $(this).prev('.rev_send').hide();
+          $(this).parent(".comment_btns").siblings(".rev_txt").show();
+          $(this).parent(".comment_btns").siblings(".rev_update_txt").hide();
+
+        }
+      });
+    });
+
+    $(".rev_delete").click(function(){
+
+        const confirmCheck = confirm('정말로 삭제하시겠습니까?');
+        //console.log(confirmCheck);
+        if(!confirmCheck){
+          return false;
+        }else{
+          const del_val = $(this).val();
+          const reply_id = $(this).next("input").val();
+          location.href=`/zay/php/reply_delete.php?del_key=${del_val}&reply_id=${reply_id}`;
+        }        
+      });
+   
   </script>
 </body>
 </html>
