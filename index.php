@@ -170,19 +170,20 @@
             </a>
             <div class="like_unlike">
               <div class="like_icons">
-              <?php if(!$userid){  ?>
-              <span onclick="plzLogin()">like | <b><?=$total_likes?></b></span>
-              <span onclick="plzLogin()">unlike | <b><?=$total_unlikes?></b></span>
-              <?php  } else {  ?>
+                <?php if(!$userid){  ?>
+                  <!-- 로그인안할때 나오는. -->
+                <span onclick="plzLogin()">like | <b><?=$total_likes?></b></span>
+                <span onclick="plzLogin()">unlike | <b><?=$total_unlikes?></b></span>
+                <?php  } else {  ?>
 
-              <span id="like_<?=$pro_row_idx?>" class="like" style="<?php if($like_unlike_type == 1){ echo"background:#59ab6e; color:#fff;"; } ?>">like | 
-              <b id="likes_<?=$pro_row_idx?>"><?=$total_likes?></b>
-              </span>
-              <span id="unlike_<?=$pro_row_idx?>" class="unlike" style="<?php if($like_unlike_type == 0){ echo"background:lightcoral; color:#fff;"; } ?>">unlike | 
-                <b id="unlikes_<?=$pro_row_idx?>"><?=$total_unlikes?></b>
-              </span>
+                <span id="like_<?=$pro_row_idx?>" class="like" style="<?php if($like_unlike_type == 1){ echo"background:#59ab6e; color:#fff;"; } ?>">like | 
+                <b id="likes_<?=$pro_row_idx?>"><?=$total_likes?></b>
+                </span>
+                <span id="unlike_<?=$pro_row_idx?>" class="unlike" style="<?php if($like_unlike_type == 0){ echo"background:lightcoral; color:#fff;"; } ?>">unlike | 
+                  <b id="unlikes_<?=$pro_row_idx?>"><?=$total_unlikes?></b>
+                </span>
 
-              <?php  }  ?>
+                <?php  }  ?>
               </div>
               <p><i class="fa fa-krw"></i><?=$pro_row_pri?></p>
             </div>

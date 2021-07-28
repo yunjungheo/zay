@@ -51,7 +51,7 @@ $(function(){
     $(".featured_item:hidden").slice(0, 3).show();
    if($(".featured_item:hidden").length == 0) {
     //  갯수가 0 이기때문에 length를 꼭써줘야함
-      $(".load_more").html(`<a href="#">전체보기</a>`);
+      $(".load_more").html(`<input type="hidden>`);
 
    }
   });
@@ -107,4 +107,22 @@ imgHeightFit();
   });
 
   detailFit();
-});
+
+  // $("#price").click(function(){
+  //   e.preventDefault();
+  //   $(this).toggleClass("on");
+  //   if($(this).hasClass("on")){
+  //     $(this).html('높은가격순 <i class="fa fa-chevron-up"></i>')
+  //     //$(this).text("높은 가격순");
+  //     //$(this).find("i").attr('class', 'fa fa-chevron-up');
+      
+  //     location.href="/zay/pages/menu_page/shop.php?key=up_price";
+  //   } else {
+  //     $(this).html('낮은가격순 <i class="fa fa-chevron-down"></i>')
+  //     //$(this).text("낮은 가격순");
+  //     //$(this).find("i").attr('class', 'fa fa-chevron-down');
+      
+  //     location.href="/zay/pages/menu_page/shop.php?key=donw_price";
+  //   }
+  //  });
+  });

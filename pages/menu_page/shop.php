@@ -30,17 +30,33 @@
       </div>
       <div class="shop_btns">
         <div class="tabs">
-          <button type="button">All</button>
-          <button type="button">Watches</button>
-          <button type="button">Shoes</button>
-          <button type="button">Accessories</button>
+          <a href="?key=all" class="active">전체보기</a>
+          <a href="?key=watches">시계</a>
+          <a href="?key=shoes">신발</a>
+          <a href="?key=accessories">액세서리</a>
         </div>
-        <div class="filter">
-          <button type="button">신상품</button>
-          <button type="button">좋아요</button>
-          <button type="button">가격</button>
+        <div class="filters">
+          <div class="filter_tabs">
+            <select onchange="location.href=this.value">
+            <option selected disabled value="">검색조건</option>
+            <option value="?key=new">신상품</option>
+            <option value="?key=like">좋아요</option>
+            <option value="?key=price">가격</option>
+            </select>
+          </div>
+          <div class="search">
+            <input type="text" style="border:1px solid;">
+            <i class="fa fa-search"></i>
+          </div>
         </div>
       </div>
+      <!-- End of show btns -->
+      <div class="featured_box">
+        <?php include $_SERVER["DOCUMENT_ROOT"]."/zay/data/sort/category_sort.php"; ?>
+      </div>
+     <div class="load_more">
+       <button type="button">More</button>
+     </div>
     </div>
   </section>
 
@@ -53,7 +69,29 @@
 
    <!-- jQuery Framework Load -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="/zay/js/jq.like.unlike.js"></script>
   <script src="/zay/js/jq.main.js"></script>
+
+  <script>
+    const pathName = window.location.href;
+    //console.log(pateName); -> 현재주소확인하는..
+    const btns = document.querySelectorAll('.shop .shop_btns a');
+    //console.log(btns); -> a가 7개 찍히는거 확인하기. 
+    //액티브안먹히는이유는 누를때마다 갱신되서 주소값으로 끌고와야함.
+    //그래서 아래에서처럼 배열을 만들어줘야함.
+    const btnsArr = ['all', 'watches','shoes','accessories'];
+    for(let i = 0; i < btnsArr.length; i++){
+      btns[i].classList.remove('active');
+      if(pathName.includes(btnsArr[i])){
+        btns[i].classList.add('active');
+      }
+    }
+
+    function plzLogin(){
+     alert('로그인 후 이용해 주세요.');
+     return false;
+   }
+  </script>
   
 
 </body>
