@@ -68,10 +68,10 @@
             //echo $like_unlike_type;
 
              $like_query = "SELECT COUNT(*) cntLikes FROM zay_like_unlike WHERE ZAY_like_unlike_type=1 AND ZAY_like_unlike_postid ='{$detail_idx}'";
-            $like_result = mysqli_query($dbConn, $like_query);
-            $like_row = mysqli_fetch_array($like_result);
-            $total_likes = $like_row['cntLikes'];
-            // 라이크에 1이 되어있는 숫자를 세어주는것 
+             $like_result = mysqli_query($dbConn, $like_query);
+             $like_row = mysqli_fetch_array($like_result);
+             $total_likes = $like_row['cntLikes'];
+             // 라이크에 1이 되어있는 숫자를 세어주는것 
 
              $unlike_query = "SELECT COUNT(*) cntUnLikes FROM zay_like_unlike WHERE ZAY_like_unlike_type=0 AND ZAY_like_unlike_postid ='{$detail_idx}'";
              $unlike_result = mysqli_query($dbConn, $unlike_query);
@@ -142,10 +142,17 @@
                       <span>+</span>
                     </P>
                   </div>
-                  <div class="detail_btns">
-                    <button type="button">BUY NOW</button>
-                    <button type="button">ADD TO CART</button>
-                  </div>
+      
+                    <form action="/zay/php/cart.php" method="post">
+                      <div class="detail_btns">
+                        <button type="button">BUY NOW</button>
+                        <button type="submit" name="add_to_cart">ADD TO CART</button>
+                      </div>
+                      <input type="hidden" name="cart_img" value="<?=$detail_img_1?>">
+                      <input type="hidden" name="cart_name" value="<?=$detail_tit?>">
+                      <input type="hidden" name="cart_desc" value="<?=$detail_desc?>">
+                      <input type="hidden" name="cart_pri" value="<?=$detail_pri?>">
+                    </form>
                 </div>
                 <!-- End of size_quantity -->
             </div>

@@ -61,24 +61,22 @@
           <li><a href="/zay/pages/menu_page/community_form.php">Community</a></li>
         </ul>
         <div class="login_info">
-
           <?php
-            if(!$userid){
-          ?>
+            if(!$userid){          ?>
           <!-- 로그아웃 시 보여질 UI -->
           <a href="/zay/pages/join/login_form.php">로그인</a>
           <a href="/zay/pages/join/join_form.php">회원가입</a>
           <a href="#"><img src="/zay/img/default-user.png" alt=""></a>
-          <?php
-            } else{
-          ?>
+          <?php            } else{          ?>
           <!-- 로그인 시 보여질 UI -->
           <a href="/zay/php/logout.php">로그아웃</a>
           <a href="#"><?=$userid?></a>
           <a href="#"><img src="/zay/data/profile/<?=$userprofile?>" alt=""></a>
-            <?php
-            }
-          ?>
+            <?php            }          ?>
+          <a href="/zay/pages/menu_page/cart_list.php" class="cart_btn">
+            <i class="fa fa-shopping-cart"></i>
+            <b>(2)</b>
+          </a>
 
           
         </div>

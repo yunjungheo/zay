@@ -8,8 +8,11 @@
 }
 
 @media screen and (max-width:1050px){
+  header .gnb{width: 60%;}
   header .gnb li{margin:0 25px;}
   header .gnb a{font-size:16px;}
+  header .login_info{width: 40%;}
+  header .login_info a{font-size: 12px;}
 
   .slider .center{flex-direction: column;}
   .slider .slider_txt{text-align:center;}
@@ -22,6 +25,9 @@
   .like_unlike{flex-direction: column; padding: 0 0 10px 0;}
   .like_icons{display: flex; justify-content: space-between; padding-bottom: 10px;}
   .like_icons span{width: 50%; text-align: center;}
+
+ 
+
 
 }
 @media screen and (max-width:850px){
