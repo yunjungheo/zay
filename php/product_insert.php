@@ -99,7 +99,7 @@ mysqli_query($dbConn, $sql);
 echo " 
 <script>
 alert('상품 입력이 완료되었습니다.');
-location.href='/zay/pages/admin/product_imgs'
+location.href='/zay/pages/admin/product_insert_form.php'
 
 "
 

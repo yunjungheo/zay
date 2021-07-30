@@ -144,12 +144,13 @@
         return;
       }
 
-      if(!check){
+      if(!check ==false){
         alert('아이디 중복체크를 눌러 주세요.');
         return;
-      }
+      }else{
 
       document.mem_form.submit();
+    }
     });
 
   </script>
