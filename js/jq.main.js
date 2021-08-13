@@ -31,28 +31,30 @@ $(function(){
 
  barsClick();
 
-//index page description text cut
- const  cuttingText = function(txtBox, txtCut, txtLen){
+///index page description text cut
+const cuttingText = function(txtBox, txtCut, txtLen){
   //console.log($(".featured_item").length);
-  for(let i = 0; i<$(txtBox).length; i++){
+  for(let i = 0; i < $(txtBox).length; i++){
     const textLength = $(txtBox).eq(i).find(txtCut).text();
     //console.log(textLength);
 
-    $(txtBox).eq(i).find(txtCut).text(textLength.substr(0,txtLen) + "...");
+    $(txtBox).eq(i).find(txtCut).text(textLength.substr(0, txtLen) + "...");
   }
- }
+}
 
- cuttingText(".featured_item", "p.desc", 60);
- cuttingText(".search_item", ".search_txt p",120);
+cuttingText(".featured_item", "p.desc", 60);
+cuttingText(".search_item", ".search_txt p", 120);
 
- $(window).resize(function(){
-   const wWidth = $(window).width();
-   if(wWidth <850){
-    cuttingText(".search_item", ".search_txt p",50);
-   }else{
-    cuttingText(".search_item", ".search_txt p",120);
-   }
-  });
+let len = 0;
+$(window).resize(function(){
+  const wWidth = $(window).width();
+  if(wWidth < 850){
+    len = 50;   
+  } else {
+    len = 120;     
+  }
+  cuttingText(".search_item", ".search_txt p", len);
+});
 
 
 // index page item load more

@@ -22,7 +22,7 @@
   section.join .form_box .login_form{width: 70%;}
 
   .featured_txt p{display: none;}
-  .like_unlike{flex-direction: column; padding: 0 0 10px 0;}
+  .like_unlike{flex-direction: column; padding: 5px 0 10px 0;}
   .like_icons{display: flex; justify-content: space-between; padding-bottom: 10px;}
   .like_icons span{width: 50%; text-align: center;}
 
@@ -36,15 +36,15 @@
   .tit_box h2{font-size:35px;}
   .tit_box p{font-size:16px;}
 
-  header{padding:12px 0; z-index:9999; background:#fff;}
+  header{padding:12px 0; z-index:9999; background:#fff; position: relative;}
   header .center{_position:relative;}
   header .logo a{font-size:35px;}
 
-  header .menu_items{position:absolute; top:100%; z-index:999; flex-direction: column; width:100%; left:0; background:#fff; display:none;}
+  header .menu_items{position:absolute; top:100%; z-index:999; flex-direction: column; width:100%; left:0; background:#fff; display:none; box-shadow:0 0 5px #ccc;}
 
   header .gnb{display:flex; flex-direction: column; width:100%; align-items: center; justify-content: center;}
   header .gnb li{padding:15px 0; border-top:1px solid #efefef; width:100%; text-align: center;}
-  header .login_info{padding:15px 0; width:100%; justify-content: center;}
+  header .login_info{padding:15px 0; width:100%; justify-content: center; border-top:1px solid #efefef;}
   header .login_info a:nth-child(2){padding:0 25px; border-left:1px solid #efefef; border-right:1px solid #efefef;}
   .mobile_menu{display:flex;}
 
@@ -85,7 +85,7 @@
 
  .community .search_paging{flex-direction: column; align-items: center;}
  .search{width: 100%; max-width: 1230px;}
- .search select{width: 20%; font-size: 12px;}
+ .search select{width: 25%; font-size: 12px;}
  .community .search_form input{width: 60%; font-size: 12px;}
  .community .search_form button{width: 15%;}
 
@@ -99,13 +99,13 @@
  .community .write_btn button, 
  .community .write_btn a{font-size: 12px;}
 
- .shop_btns{flex-wrap: wrap;}
+ .shop .shop_btns{flex-wrap:wrap;}
  .shop .shop_btns>div{width:100%;}
- .shop .shop_btns>div.tabs,
- .shop .shop_btns>div.filters{display: flex; justify-content: center; margin-bottom: 10px;}
- .shop .shop_btns a{margin: 0 3px;}
+ .shop .shop_btns>div.tabs, 
+ .shop .shop_btns>div.filters{display:flex; justify-content: center; margin-bottom:10px;}
+ .shop .shop_btns a{margin:0 3px;}
 
- .pro_search .searh_item{flex-wrap: wrap;}
+ .pro_search .search_item{flex-wrap: wrap;}
  .pro_search span.search_img,
  .pro_search span.search_txt{width: 50%;}
  .pro_search span img{width: 100%;}
@@ -114,6 +114,7 @@
  .pro_search span.search_btns{width: 100%;}
  .pro_search span.search_btns form{display: flex; justify-content: flex-end; width: 100%;}
  .pro_search span.search_btns button{width: auto; margin: 0 3px 10px; font-size: 12px;}
+
 }
 
 @media screen and (max-width:500px){

@@ -43,6 +43,8 @@
              $cart_quan = $value['cart_quan'];
              //echo $cart_name;
         // 설명보다 옵션을 가져오는게 날것같음! 따로변경하기.
+
+          
         ?>
         <div class="search_item">
           <span class="search_img">
@@ -83,7 +85,6 @@
    <!-- jQuery Framework Load -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="/zay/js/jq.main.js"></script>
-
 
 
 </body>

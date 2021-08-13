@@ -136,10 +136,10 @@
                       <span>X</span>
                       <span>XL</span>
                     </p>
-                    <P>Quantity 
-                      <span>-</span>
+                    <P class="quantity">Quantity 
+                      <span class="minus">-</span>
                       <b>1</b>
-                      <span>+</span>
+                      <span class="plus">+</span>
                     </P>
                   </div>
       
