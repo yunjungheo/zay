@@ -20,6 +20,15 @@
     $userprofile = "";
   }
 
+  if(isset($_SESSION['userlevel'])){
+    $userlevel = $_SESSION['userlevel'];
+  } else {
+    $userlevel = "";
+  }
+
+  
+  //echo $userlevel; 레벨확인하기!-숫자로표시됨
+
   //echo $userid, $userprofile;
 
 ?>
@@ -62,17 +71,28 @@
         </ul>
         <div class="login_info">
           <?php
-            if(!$userid){          ?>
+            if(!$userid){  ?>
           <!-- 로그아웃 시 보여질 UI -->
           <a href="/zay/pages/join/login_form.php">로그인</a>
           <a href="/zay/pages/join/join_form.php">회원가입</a>
           <a href="#"><img src="/zay/img/default-user.png" alt=""></a>
-          <?php            } else{          ?>
+          <?php            } else{ 
+            if($userlevel == 1){
+            ?>
+
+            <!-- 로그인 시 보여질 UI -->
+            <a href="/zay/php/logout.php">로그아웃</a>
+            <a href="#"><?=$userid?></a>
+            <a href="/zay/pages/admin/admin.php" class="admin_link"><i class="fa fa-cog"></i></a>
+
+            <?php } else { ?>
+
           <!-- 로그인 시 보여질 UI -->
           <a href="/zay/php/logout.php">로그아웃</a>
           <a href="#"><?=$userid?></a>
           <a href="#"><img src="/zay/data/profile/<?=$userprofile?>" alt=""></a>
-            <?php            }          ?>
+
+            <?php  } }    ?>
             <?php   
             $cart_count = 0;
             if(isset($_SESSION['cart'])){

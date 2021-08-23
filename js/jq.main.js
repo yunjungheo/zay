@@ -141,4 +141,16 @@ imgHeightFit();
   //     location.href="/zay/pages/menu_page/shop.php?key=donw_price";
   //   }
   //  });
+
+  const  admin_tabs = function(){
+    $(".admin_tabs button").click(function(){
+      const tab_idx = $(this).index();
+      //alert(tab_idx);
+      $(".admin_panels>div").hide();
+      $(".admin_panels>div").eq(tab_idx).show();
+    });
+
+    $(".admin_tabs button").eq(0).trigger("click");
+  };
+    admin_tabs();
   });
